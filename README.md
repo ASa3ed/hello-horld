@@ -1,2 +1,2 @@
-# hello-horld
+# hello-world
 Udacity Examples
