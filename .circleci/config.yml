@@ -12,11 +12,12 @@ jobs:
     steps:
       - run: echo hello
       - run: echo My pipeline id is << pipeline.id >> and my git branch is << pipeline.git.branch >>
+      - run: echo "text to output here" > output.txt
       - persist_to_workspace:
           root: ~/
           paths:
-            - tmp/workspace/myvar
-      - run: echo "text to output here" > output.txt
+            - output.txt
+      
       
 
   print_out_file:
@@ -25,7 +26,7 @@ jobs:
     steps:
       - run: echo hello
       - attach_workspace:
-          at: ~/tmp/workspace/myvar
+          at: ~/
       - run: cat output.txt
   # print_world: 
   #   docker:
