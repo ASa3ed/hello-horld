@@ -6,28 +6,42 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
 jobs:
-  print_hello:
+  save_hello_world:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - run: echo hello
       - run: echo My pipeline id is Ahmed << pipeline.id >> and my git branch is << pipeline.git.branch >>
+      - run: echo "text to output here" > output.txt
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - target/application.jar
+            - build/*
 
-  print_world: 
+  print_out_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo world
+      - run: echo hello
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: cat output.txt
+  # print_world: 
+  #   docker:
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - run: echo world
 
-  build:
-    docker:
-      - image: cimg/base:2020.01
-    steps:
-      - checkout
-      - run: 
-          name: "echo an env var that is part of our project"
-          command: |
-            echo $MyName # this env var must be set within the project
+  # build:
+  #   docker:
+  #     - image: cimg/base:2020.01
+  #   steps:
+  #     - checkout
+  #     - run: 
+  #         name: "echo an env var that is part of our project"
+  #         command: |
+  #           echo $MyName # this env var must be set within the project
 
 workflows:
   # Name the workflow "welcome"
@@ -35,8 +49,7 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-      - print_hello
-      - print_world:
+      - save_hello_world
+      - print_out_file:
           requires:
-            - print_hello
-      - build
+            - save_hello_world
