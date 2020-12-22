@@ -22,9 +22,6 @@ jobs:
   build:
     docker:
       - image: cimg/base:2020.01
-      auth:
-          username: asghostknight
-          password: AS@dockerhub  # context / project UI env-var reference
     steps:
       - checkout
       - run: 
