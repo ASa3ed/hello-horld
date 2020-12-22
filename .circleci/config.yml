@@ -11,7 +11,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run: echo hello
-      - run: My pipeline id isssssss << pipeline.id >> and my git branch is << pipeline.git.branch >>
+      - run: My pipeline id is Ahmed << pipeline.id >> and my git branch is << pipeline.git.branch >>
 
   print_world: 
     docker:
@@ -29,8 +29,3 @@ workflows:
       - print_world:
           requires:
             - print_hello
-<<<<<<< HEAD
-
-            # here is my comment
-=======
->>>>>>> b688e99569f9d889119ed8105b8cafddb3adb9e3
