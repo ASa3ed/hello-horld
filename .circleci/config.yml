@@ -29,5 +29,8 @@ workflows:
       - print_world:
           requires:
             - print_hello
+<<<<<<< HEAD
 
             # here is my comment
+=======
+>>>>>>> b688e99569f9d889119ed8105b8cafddb3adb9e3
