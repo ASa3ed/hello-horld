@@ -1,9 +1,10 @@
 version: 2.1
 
 jobs:
+     # AWS infrastructure
   create_infrastructure:
     docker:
-      - image: amazon/aws-cli
+        - image: amazon/aws-cli
     steps:
       - checkout
       - run:
