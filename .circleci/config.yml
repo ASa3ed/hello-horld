@@ -6,7 +6,7 @@ commands:
       - run:
           name: Destroy environment
           command: |
-            aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID}
+            aws cloudformation delete-stack --stack-name prod-010101010101010
 
 jobs:
   create_infrastructure:
@@ -19,7 +19,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file template.yml \
-              --stack-name prod-${CIRCLE_WORKFLOW_ID}
+              --stack-name prod-010101010101010
       - run: return 1
       - destroy_environment
         when: on_fail
